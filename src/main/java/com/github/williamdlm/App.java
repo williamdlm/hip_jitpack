@@ -2,6 +2,7 @@ package com.github.williamdlm;
 
 import com.github.williamdlm.config.CxfConfig;
 import com.github.williamdlm.routes.CxfRoute;
+import com.github.williamdlm.service.GreetingServiceImpl;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -15,9 +16,12 @@ public class App
         try (CamelContext camel = new DefaultCamelContext()) {
             CxfConfig cxfConfig = new CxfConfig();
             camel.getRegistry().bind("greetingEndpoint", cxfConfig.greetingEndpoint());
+            camel.getRegistry().bind("greetingServiceImpl", GreetingServiceImpl.class);
             camel.addRoutes(CxfRoute.createRoute());
             camel.start();
-            Thread.sleep(100_000);
+            while (true){
+
+            }
         }
     }
 }

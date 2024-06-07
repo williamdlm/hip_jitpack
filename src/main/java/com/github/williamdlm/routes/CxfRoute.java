@@ -9,7 +9,8 @@ public class CxfRoute {
             @Override
             public void configure() throws Exception {
                 from("cxf:bean:greetingEndpoint")
-                        .log("{$body}");
+                        .log("{$body}")
+                        .to("bean:greetingServiceImpl?method=sayHi");
             }
         };
     }
